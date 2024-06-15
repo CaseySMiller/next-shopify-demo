@@ -1,3 +1,5 @@
+// this holds the description, loads the varriant-selector component, and has the add to cart button
+
 import { AddToCart } from 'components/cart/add-to-cart';
 import Price from 'components/price';
 import Prose from 'components/prose';

@@ -16,9 +16,13 @@ export function GridTileImage({
     currencyCode: string;
     position?: 'bottom' | 'center';
   };
-} & React.ComponentProps<typeof Image>) {
+} & React.ComponentProps<typeof Image>) { 
+  // if the types are happy and the component is an image then we return this jsx; otherwise, return null
   return (
     <div
+      // clsx is a utility for conditionally joining class names together
+      // this will apply the first set of classes no matter what
+      // it will add on a different set of classes if active is true or false
       className={clsx(
         'group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black',
         {

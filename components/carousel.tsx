@@ -1,10 +1,13 @@
+// this will now load the data from the homepage-carousel collection
+// needs to be refactored to suck less
+
 import { getCollectionProducts } from 'lib/shopify';
 import Link from 'next/link';
 import { GridTileImage } from './grid/tile';
 
 export async function Carousel() {
   // Collections that start with `hidden-*` are hidden from the search page.
-  const products = await getCollectionProducts({ collection: 'hidden-homepage-carousel' });
+  const products = await getCollectionProducts({ collection: 'homepage-carousel' });
 
   if (!products?.length) return null;
 

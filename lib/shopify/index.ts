@@ -23,6 +23,7 @@ import {
   getProductRecommendationsQuery,
   getProductsQuery
 } from './queries/product';
+// import the types
 import {
   Cart,
   Collection,
@@ -53,24 +54,32 @@ import {
 const domain = process.env.SHOPIFY_STORE_DOMAIN
   ? ensureStartsWith(process.env.SHOPIFY_STORE_DOMAIN, 'https://')
   : '';
-const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`;
+
+// https://<store-domain>/api/2023-01/graphql.json
+const endpoint = `${domain}${SHOPIFY_GRAPHQL_API_ENDPOINT}`; 
+
 const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
+// <T> is a generic Type that will be infered from the input
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
+//this function fetches data from shopify API
 export async function shopifyFetch<T>({
+  // this is the object we are passing as a parameter to the function
   cache = 'force-cache',
   headers,
   query,
   tags,
   variables
 }: {
+  // these are the types for the parameter object
   cache?: RequestCache;
   headers?: HeadersInit;
   query: string;
   tags?: string[];
   variables?: ExtractVariables<T>;
-}): Promise<{ status: number; body: T } | never> {
+}): Promise<{ status: number; body: T } | never> { // ts comment below
+  // this function returns a promise that resolves to an object with status and body
   try {
     const result = await fetch(endpoint, {
       method: 'POST',
@@ -114,6 +123,7 @@ export async function shopifyFetch<T>({
   }
 }
 
+//this function just cleans up the data from the shopify API
 const removeEdgesAndNodes = (array: Connection<any>) => {
   return array.edges.map((edge) => edge?.node);
 };
@@ -144,19 +154,19 @@ const reshapeCollection = (collection: ShopifyCollection): Collection | undefine
 };
 
 const reshapeCollections = (collections: ShopifyCollection[]) => {
-  const reshapedCollections = [];
+  const outputCollection = [];
 
   for (const collection of collections) {
     if (collection) {
       const reshapedCollection = reshapeCollection(collection);
 
       if (reshapedCollection) {
-        reshapedCollections.push(reshapedCollection);
+        outputCollection.push(reshapedCollection);
       }
     }
   }
 
-  return reshapedCollections;
+  return outputCollection;
 };
 
 const reshapeImages = (images: Connection<Image>, productTitle: string) => {
@@ -282,6 +292,7 @@ export async function getCollection(handle: string): Promise<Collection | undefi
   return reshapeCollection(res.body.data.collection);
 }
 
+// this gets the products for a specific collection
 export async function getCollectionProducts({
   collection,
   reverse,
@@ -309,6 +320,7 @@ export async function getCollectionProducts({
   return reshapeProducts(removeEdgesAndNodes(res.body.data.collection.products));
 }
 
+//this gets a list of all the collections
 export async function getCollections(): Promise<Collection[]> {
   const res = await shopifyFetch<ShopifyCollectionsOperation>({
     query: getCollectionsQuery,

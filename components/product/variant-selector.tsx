@@ -1,3 +1,5 @@
+// menu to select product variants on the right side of the product page
+
 'use client';
 
 import clsx from 'clsx';

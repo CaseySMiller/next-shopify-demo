@@ -1,8 +1,9 @@
+// one product page
+
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import { GridTileImage } from 'components/grid/tile';
-import Footer from 'components/layout/footer';
 import { Gallery } from 'components/product/gallery';
 import { ProductDescription } from 'components/product/product-description';
 import { HIDDEN_PRODUCT_TAG } from 'lib/constants';
@@ -102,7 +103,6 @@ export default async function ProductPage({ params }: { params: { handle: string
         </div>
         <RelatedProducts id={product.id} />
       </div>
-      <Footer />
     </>
   );
 }

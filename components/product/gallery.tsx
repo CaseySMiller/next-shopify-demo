@@ -1,3 +1,7 @@
+// this is the component that displays one product and it's image selector
+// this is a good component. It just needs some restyling
+// this doe NOT disply the related products
+
 'use client';
 
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
@@ -28,6 +32,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
 
   return (
     <>
+      {/* This is where the active image is displayed */}
       <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
         {images[imageIndex] && (
           <Image
@@ -40,6 +45,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
           />
         )}
 
+        {/* create back and forward arrows if there is more than one image */}
         {images.length > 1 ? (
           <div className="absolute bottom-[15%] flex w-full justify-center">
             <div className="mx-auto flex h-11 items-center rounded-full border border-white bg-neutral-50/80 text-neutral-500 backdrop-blur dark:border-black dark:bg-neutral-900/80">
@@ -66,9 +72,14 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
       </div>
 
       {images.length > 1 ? (
+
+        //
+        // shmaybe change the style on this ul to make it prettier
+        // this holds the small product images
+        //
         <ul className="my-12 flex items-center justify-center gap-2 overflow-auto py-1 lg:mb-0">
           {images.map((image, index) => {
-            const isActive = index === imageIndex;
+            const isActive = index === imageIndex; // boolean
             const imageSearchParams = new URLSearchParams(searchParams.toString());
 
             imageSearchParams.set('image', index.toString());
@@ -81,7 +92,7 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
                   scroll={false}
                   className="h-full w-full"
                 >
-                  <GridTileImage
+                  <GridTileImage // ./components/grid/tile.tsx
                     alt={image.altText}
                     src={image.src}
                     width={80}
