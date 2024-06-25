@@ -50,9 +50,15 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
+export default async function ProductPage({ 
+  params,
+  searchParams 
+}: { 
+  params: { handle: string, };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const product = await getProduct(params.handle);
-
+  
   if (!product) return notFound();
 
   const productJsonLd = {
@@ -98,7 +104,7 @@ export default async function ProductPage({ params }: { params: { handle: string
           </div>
 
           <div className="basis-full lg:basis-2/6">
-            <ProductDescription product={product} />
+            <ProductDescription product={product} variantTitle={searchParams?.title} />
           </div>
         </div>
         <RelatedProducts id={product.id} />

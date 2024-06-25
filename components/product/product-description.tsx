@@ -7,14 +7,28 @@ import { Product } from 'lib/shopify/types';
 import { Suspense } from 'react';
 import { VariantSelector } from './variant-selector';
 
-export function ProductDescription({ product }: { product: Product }) {
+export function ProductDescription({ 
+  product,
+  variantTitle 
+}: { 
+  product: Product; 
+  variantTitle?: {type: string | undefined};
+}) {
+
+let price = "";
+if (typeof variantTitle === 'string') {
+  const variant = product.variants.find((variant) => variant.title === variantTitle);
+  variant ? price = variant?.price.amount : "";
+}
+
+
   return (
     <>
       <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700">
         <h1 className="mb-2 text-5xl font-medium">{product.title}</h1>
         <div className="mr-auto w-auto rounded-full bg-blue-600 p-2 text-sm text-white">
           <Price
-            // amount={product.priceRange.maxVariantPrice.amount}
+            amount={price}
             minAmount={product.priceRange.minVariantPrice.amount}
             maxAmount={product.priceRange.maxVariantPrice.amount}
             currencyCode={product.priceRange.maxVariantPrice.currencyCode}

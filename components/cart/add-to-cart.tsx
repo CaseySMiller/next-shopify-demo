@@ -78,7 +78,6 @@ export function AddToCart({
       (option) => option.value === searchParams.get(option.name.toLowerCase())
     )
   );
-  console.log(variant);
   
   const selectedVariantId = variant?.id || defaultVariantId;
   const actionWithVariant = formAction.bind(null, selectedVariantId);
