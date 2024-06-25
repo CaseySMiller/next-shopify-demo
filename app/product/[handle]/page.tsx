@@ -57,7 +57,7 @@ export default async function ProductPage({
   params: { handle: string, };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const product = await getProduct(params.handle);
+  const product = await getProduct(params.handle);  
 
   const variantTitle: string | undefined = searchParams?.title?.toString();
   
@@ -68,7 +68,7 @@ export default async function ProductPage({
     '@type': 'Product',
     name: product.title,
     description: product.description,
-    image: product.featuredImage.url,
+    image: product.featuredImage?.url,
     offers: {
       '@type': 'AggregateOffer',
       availability: product.availableForSale
