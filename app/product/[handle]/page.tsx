@@ -58,6 +58,8 @@ export default async function ProductPage({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const product = await getProduct(params.handle);
+
+  const variantTitle: string | undefined = searchParams?.title?.toString();
   
   if (!product) return notFound();
 
@@ -104,7 +106,7 @@ export default async function ProductPage({
           </div>
 
           <div className="basis-full lg:basis-2/6">
-            <ProductDescription product={product} variantTitle={searchParams?.title} />
+            <ProductDescription product={product} variantTitle={variantTitle} />
           </div>
         </div>
         <RelatedProducts id={product.id} />

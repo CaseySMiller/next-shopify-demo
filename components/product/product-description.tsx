@@ -12,7 +12,7 @@ export function ProductDescription({
   variantTitle 
 }: { 
   product: Product; 
-  variantTitle?: {type: string | undefined};
+  variantTitle?: string | undefined;
 }) {
 
 let price = "";
