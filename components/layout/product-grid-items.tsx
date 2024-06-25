@@ -4,6 +4,7 @@ import { Product } from 'lib/shopify/types';
 import Link from 'next/link';
 
 export default function ProductGridItems({ products }: { products: Product[] }) {
+  
   return (
     <>
       {products.map((product) => (
@@ -13,7 +14,8 @@ export default function ProductGridItems({ products }: { products: Product[] }) 
               alt={product.title}
               label={{
                 title: product.title,
-                amount: product.priceRange.maxVariantPrice.amount,
+                minAmount: product.priceRange.minVariantPrice.amount,
+                maxAmount: product.priceRange.maxVariantPrice.amount,
                 currencyCode: product.priceRange.maxVariantPrice.currencyCode
               }}
               src={product.featuredImage?.url}

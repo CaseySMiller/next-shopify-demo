@@ -7,14 +7,6 @@ import FilterList from './filter';
 async function CollectionList() {
   const collections = await getCollections();
 
-  const filteredCollections = collections.map((collection) => {
-    if (collection.handle !== 'homepage-carousel' && collection.handle !== 'homepage-featured-items') {
-      return collection;
-    }
-  });
-  console.log(collections);
-  
-  // console.log(filteredCollections);
   
   return <FilterList list={collections} title="Collections" />;
 }

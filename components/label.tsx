@@ -3,15 +3,18 @@ import Price from './price';
 
 const Label = ({
   title,
-  amount,
+  minAmount,
+  maxAmount,
   currencyCode,
   position = 'bottom'
 }: {
   title: string;
-  amount: string;
+  minAmount: string;
+  maxAmount: string;
   currencyCode: string;
   position?: 'bottom' | 'center';
 }) => {
+  
   return (
     <div
       className={clsx('absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label', {
@@ -22,10 +25,12 @@ const Label = ({
         <h3 className="mr-4 line-clamp-2 flex-grow pl-2 leading-none tracking-tight">{title}</h3>
         <Price
           className="flex-none rounded-full bg-blue-600 p-2 text-white"
-          amount={amount}
+          minAmount={minAmount}
+          maxAmount={maxAmount}
           currencyCode={currencyCode}
           currencyCodeClassName="hidden @[275px]/label:inline"
         />
+
       </div>
     </div>
   );

@@ -137,6 +137,8 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                               <Price
                                 className="flex justify-end space-y-2 text-right text-sm"
                                 amount={item.cost.totalAmount.amount}
+                                // minAmount={item.cost.totalAmount.amount}
+                                // maxAmount={item.cost.totalAmount.amount}
                                 currencyCode={item.cost.totalAmount.currencyCode}
                               />
                               <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">

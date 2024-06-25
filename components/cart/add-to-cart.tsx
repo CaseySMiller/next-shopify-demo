@@ -38,7 +38,7 @@ function SubmitButton({
         <div className="absolute left-0 ml-4">
           <PlusIcon className="h-5" />
         </div>
-        Add To Cart
+        Select An Option
       </button>
     );
   }
@@ -78,6 +78,8 @@ export function AddToCart({
       (option) => option.value === searchParams.get(option.name.toLowerCase())
     )
   );
+  console.log(variant);
+  
   const selectedVariantId = variant?.id || defaultVariantId;
   const actionWithVariant = formAction.bind(null, selectedVariantId);
 

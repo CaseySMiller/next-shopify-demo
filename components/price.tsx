@@ -2,23 +2,51 @@ import clsx from 'clsx';
 
 const Price = ({
   amount,
+  minAmount,
+  maxAmount,
   className,
   currencyCode = 'USD',
   currencyCodeClassName
 }: {
-  amount: string;
+  amount?: string;
+  minAmount?: string;
+  maxAmount?: string;
   className?: string;
   currencyCode: string;
   currencyCodeClassName?: string;
-} & React.ComponentProps<'p'>) => (
-  <p suppressHydrationWarning={true} className={className}>
-    {`${new Intl.NumberFormat(undefined, {
+} & React.ComponentProps<'p'>) => {
+  let outputPrice = ""
+  if (amount) {
+    outputPrice = `${new Intl.NumberFormat(undefined, {
       style: 'currency',
       currency: currencyCode,
       currencyDisplay: 'narrowSymbol'
-    }).format(parseFloat(amount))}`}
+    }).format(parseFloat(amount))}`
+  } else if (minAmount && maxAmount) {
+    if (minAmount === maxAmount) { 
+        outputPrice = `${new Intl.NumberFormat(undefined, {
+          style: 'currency',
+          currency: currencyCode,
+          currencyDisplay: 'narrowSymbol'
+        }).format(parseFloat(minAmount))}`
+      } else {
+        outputPrice = `${new Intl.NumberFormat(undefined, {
+          style: 'currency',
+          currency: currencyCode,
+          currencyDisplay: 'narrowSymbol'
+        }).format(parseFloat(minAmount))} - ${new Intl.NumberFormat(undefined, {
+          style: 'currency',
+          currency: currencyCode,
+          currencyDisplay: 'narrowSymbol'
+        }).format(parseFloat(maxAmount))}`
+      }
+  }
+
+  return (
+  <p suppressHydrationWarning={true} className={className}>
+    {outputPrice}
     <span className={clsx('ml-1 inline', currencyCodeClassName)}>{`${currencyCode}`}</span>
   </p>
-);
+)};
 
 export default Price;
