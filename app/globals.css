@@ -2,11 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+/* hide logoDark images in light mode */
+.logoDark {
+  display: none;
+}
+
+/* enable the rule below to support system preference  of color scheme*/
+/* also the darkmode selector must be removed from tailwind.config.js */
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+
+  .logoLight {
+    display: none;
+  }
+  .logoDark {
+    display: unset;
+  }
+} */
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {
   img[loading='lazy'] {

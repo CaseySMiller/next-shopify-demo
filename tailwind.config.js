@@ -3,6 +3,8 @@ const plugin = require('tailwindcss/plugin');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  // remove the rule below to allow system preference to be used for dark mode
+  darkMode: 'selector',
   theme: {
     extend: {
       fontFamily: {

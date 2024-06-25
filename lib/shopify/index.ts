@@ -342,7 +342,17 @@ export async function getCollections(): Promise<Collection[]> {
     // Filter out the `hidden` collections.
     // Collections that start with `hidden-*` need to be hidden on the search page.
     ...reshapeCollections(shopifyCollections).filter(
-      (collection) => !collection.handle.startsWith('hidden')
+      // (collection) => !collection.handle.startsWith('hidden')
+      (collection) => {
+        if (
+          !collection.handle.startsWith('hidden') 
+          && collection.handle !== 'homepage-featured-items'
+          && collection.handle !== 'homepage-carousel'
+          && collection.handle !== 'frontpage'
+        ) {
+          return collection;
+        }
+      }
     )
   ];
 
@@ -358,10 +368,13 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     }
   });
 
+  
+
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
-      path: item.url.replace(domain, '').replace('/collections', '/search').replace('/pages', '')
+      // Replace url string to connect the shopify menu to the next app pages
+      path: item.url.replace(domain, '').replace('/collections/all', '/search').replace('/pages', '')
     })) || []
   );
 }
