@@ -180,7 +180,6 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                         If asked for a password, use: shohmp
                       </p>
                     </div>
-
                   </div>
                   <a
                     href={cart.checkoutUrl}
