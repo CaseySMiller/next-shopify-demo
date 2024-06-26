@@ -7,6 +7,11 @@ module.exports = {
   darkMode: 'selector',
   theme: {
     extend: {
+      colors: {
+        'price-color': '#3553a8',
+        'count-color': '#3553a8',
+        'selection-color': '#d3ebed',
+      },
       fontFamily: {
         sans: ['var(--font-geist-sans)']
       },
