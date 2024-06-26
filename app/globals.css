@@ -36,9 +36,24 @@ button {
 
 /* animated linear gradient background */
 body {
-	background: linear-gradient(-22deg, #b4aad2, #b0c2e1, #bce1ee, #f4f5f6);
+background: linear-gradient(
+  60deg,
+  hsl(220deg 2% 72%) 0%,
+  hsl(220deg 28% 72%) 8%,
+  hsl(219deg 52% 71%) 17%,
+  hsl(218deg 75% 69%) 25%,
+  hsl(220deg 61% 75%) 33%,
+  hsl(220deg 40% 80%) 42%,
+  hsl(220deg 4% 85%) 50%,
+  hsl(220deg 40% 80%) 58%,
+  hsl(220deg 61% 75%) 67%,
+  hsl(218deg 75% 69%) 75%,
+  hsl(219deg 52% 71%) 83%,
+  hsl(220deg 28% 72%) 92%,
+  hsl(220deg 2% 72%) 100%
+);
 	background-size: 400% 400%;
-	animation: gradient 10s ease infinite;
+	animation: gradient 20s ease infinite;
 	height: 100vh;
 }
 
