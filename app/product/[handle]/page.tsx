@@ -59,6 +59,10 @@ export default async function ProductPage({
 }) {
   const product = await getProduct(params.handle);  
 
+  // console.log(searchParams);
+  const variantObject: { [key: string]: string | string[] | undefined } | undefined = searchParams;
+  // console.log(variantObject);
+
   const variantTitle: string | undefined = searchParams?.title?.toString();
   
   if (!product) return notFound();
@@ -106,7 +110,7 @@ export default async function ProductPage({
           </div>
 
           <div className="basis-full lg:basis-2/6">
-            <ProductDescription product={product} variantTitle={variantTitle} />
+            <ProductDescription product={product} variantObject={variantObject} />
           </div>
         </div>
         <RelatedProducts id={product.id} />

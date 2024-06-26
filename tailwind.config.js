@@ -32,9 +32,9 @@ module.exports = {
       }
     }
   },
-  future: {
-    hoverOnlyWhenSupported: true
-  },
+  // future: {
+  //   hoverOnlyWhenSupported: true
+  // },
   plugins: [
     require('@tailwindcss/container-queries'),
     require('@tailwindcss/typography'),

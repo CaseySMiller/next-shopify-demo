@@ -9,18 +9,28 @@ import { VariantSelector } from './variant-selector';
 
 export function ProductDescription({ 
   product,
-  variantTitle 
+  variantObject
 }: { 
   product: Product; 
-  variantTitle?: string | undefined;
+  variantObject?: { [key: string]: string | string[] | undefined } | undefined;
 }) {
+  
+  // function to return the price of the variant based on the variantObject key/value
+  const getVariantPrice = (variantObject: { [key: string]: string | string[] | undefined } | undefined ) => {
+    // the value of the first key in the vaiantObject will be the variant title
+    const firstValue = variantObject ? Object.values(variantObject)[0] : undefined;
+    if (typeof firstValue === 'string') {
+      const variant = product.variants.find((variant) => variant.title === firstValue);
 
-let price = "";
-if (typeof variantTitle === 'string') {
-  const variant = product.variants.find((variant) => variant.title === variantTitle);
-  variant ? price = variant?.price.amount : "";
-}
+      if (variant) {
+        return variant.price.amount;
+      }
+    }
+  };
 
+  const price = getVariantPrice(variantObject);
+  
+  
 
   return (
     <>

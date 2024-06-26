@@ -175,6 +175,12 @@ export default function CartModal({ cart }: { cart: Cart | undefined }) {
                         currencyCode={cart.cost.totalAmount.currencyCode}
                       />
                     </div>
+                    <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
+                      <p className="text-sm text-black dark:text-white">
+                        If asked for a password, use: shohmp
+                      </p>
+                    </div>
+
                   </div>
                   <a
                     href={cart.checkoutUrl}
